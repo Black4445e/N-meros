@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contatos</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: linear-gradient(90deg, #4a90e2, #0072ff);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 2em;
+      font-weight: 600;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+    }
+
+    .name {
+      font-weight: 600;
+      font-size: 1.2em;
+      margin-bottom: 8px;
+    }
+
+    .number {
+      font-family: 'Courier New', monospace;
+      color: #555;
+      margin-bottom: 15px;
+    }
+
+    .copy-btn {
+      background: linear-gradient(90deg, #4a90e2, #0072ff);
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: linear-gradient(90deg, #357ab7, #005ecc);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <header>Contatos</header>
+
+  <div class="container" id="contact-list">
+    <!-- Cartões de contato serão inseridos aqui -->
+  </div>
+
+  <script>
+    const contacts = [
+      { name: "izaaxc7", number: "+55 97 98414-7009" },
+  { name: "Thayrine", number: "+55 97 98460-2852" },
+    ];
+
+    const container = document.getElementById('contact-list');
+
+    contacts.forEach(contact => {
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      const name = document.createElement('div');
+      name.className = 'name';
+      name.textContent = contact.name;
+
+      const number = document.createElement('div');
+      number.className = 'number';
+      number.textContent = contact.number;
+
+      const button = document.createElement('button');
+      button.className = 'copy-btn';
+      button.textContent = 'Copiar Número';
+      button.addEventListener('click', () => {
+        navigator.clipboard.writeText(contact.number)
+          .then(() => alert(`Número copiado!`))
+          .catch(() => alert('Erro ao copiar.'));
+      });
+
+      card.appendChild(name);
+      card.appendChild(number);
+      card.appendChild(button);
+      container.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>
